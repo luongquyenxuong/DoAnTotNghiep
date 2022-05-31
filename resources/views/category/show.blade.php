@@ -4,7 +4,7 @@
         <div class="card-body">
             <p class="card-description">
             <div class="col-12 ">
-                <h2 class="tm-block-title d-inline-block">Category</h2>
+                <h2 class="tm-block-title d-inline-block">Danh mục</h2>
 
             </div>
             </p>
@@ -13,13 +13,13 @@
                     <div class="col-xl-6 col-lg-6 col-md-12">
                         <form class="tm-edit-product-form">
                             <div class="form-group mb-3">
-                                <label>Name category
+                                <label>Tên danh mục
                                 </label>
                                 <input disabled type="text" value="{{ $category->name }}" class="form-control ">
                             </div>
                             <div class="row">
                                 <div class="form-group mb-3 col-xs-12 col-sm-6">
-                                    <label for="">Date create
+                                    <label for="">Ngày tạo
                                     </label>
                                     @if ($category->created_at == null)
                                         <input id="" name="" type="text" value="Null" disabled
@@ -50,8 +50,5 @@
         </div>
 
     </div>
-    <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
-    <script src="../../assets/js/off-canvas.js"></script>
-    <script src="../../assets/js/hoverable-collapse.js"></script>
-    <script src="../../assets/js/misc.js"></script>
+
 @endsection

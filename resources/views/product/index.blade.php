@@ -2,15 +2,15 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Product</h4>
+            <h4 class="card-title">Sản phẩm</h4>
             <p class="card-description">
                 <a href="{{ route('product.create') }}" class="btn btn-outline-primary btn-fw">
                     <i class=""></i>
-                    Add
+                    Thêm
                 </a>
                 <a href="{{ route('product.deleted') }}" class="btn btn-outline-primary btn-fw">
                     <i class=""></i>
-                    Deleted products
+                   Sản phẩm đã xóa
                 </a>
             </p>
 
@@ -19,12 +19,12 @@
                     <thead>
                         <tr>
                             <th>id</th>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Image</th>
-                            <th>Price</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th>Tên</th>
+                            <th>Danh mục</th>
+                            <th>Hình Ảnh</th>
+                            <th>Giá</th>
+                            <th>Trạng thái</th>
+                            <th>Chức năng</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,12 +33,12 @@
                                 <td>{{ $p->id }}</td>
                                 <td>{{ $p->name }}</td>
                                 <td>{{ $p->category->name }}</td>
-                                <td><img style="width: 100px;max-height:100px;object-fit:contain" src="{{ $p->img_url }}">
+                                <td><img style="width: 70px;height:70px;object-fit:contain" src="{{ $p->img_url }}">
                                 </td>
-                                <td>{{ $p->price }}</td>
+                                <td>{{ number_format($p->price) }}</td>
 
                                 @if ($p->status == 1)
-                                    <td> Active</td>
+                                    <td> Hoạt động</td>
                                 @else
                                     <td> Inactive</td>
                                 @endif
@@ -46,22 +46,22 @@
                                     <div class="btn-group btn-group-sm">
                                         <a href="{{ route('product.show', $p) }}">
                                             <button type="submit" class="btn btn-info btn-sm" data-toggle="tooltip"
-                                                data-placement="top" title="View">
+                                                data-placement="top" title="Xen">
                                                 <i class="mdi mdi-eye"></i>
                                             </button>
                                         </a>
                                         <a href="{{ route('product.edit', $p) }}">
                                             <button type="submit" class="btn btn-warning btn-sm" data-toggle="tooltip"
-                                                data-placement="top" title="Edit">
+                                                data-placement="top" title="Chỉnh sửa">
                                                 <i class="mdi mdi-pencil-box"></i>
                                             </button>
                                         </a>
-                                        <form action="{{ route('product.destroy', $p) }}" method="post">
+                                        <form action="{{ route('product.destroy', $p) }}" method="post" class="delete">
                                             @csrf
                                             @method('DELETE')
                                             <a>
                                                 <button class="btn btn-danger btn-sm" data-toggle="tooltip" type="submit"
-                                                    title="Delete">
+                                                    title="Xóa">
                                                     <i class="mdi mdi-delete"></i>
                                                 </button></a>
                                         </form>
@@ -70,12 +70,10 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div> {{ $lstProduct->links('pagination::bootstrap-4') }}</div>
             </div>
         </div>
     </div>
-    <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
-  <script src="../../assets/js/off-canvas.js"></script>
-  <script src="../../assets/js/hoverable-collapse.js"></script>
-  <script src="../../assets/js/misc.js"></script>
+
 
 @endsection

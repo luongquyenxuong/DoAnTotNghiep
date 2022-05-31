@@ -12,29 +12,29 @@
                 <table class="table text-center">
                     <thead>
                         <tr>
-                            <th>id</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th>STT</th>
+                            <th>Tên topping</th>
+                            <th>Giá</th>
+                            <th>Trạng thái</th>
+                            <th>Chức năng</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($lstTopping as $t)
                             <tr>
-                                <td>{{ $t->id }}</td>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ $t->name }}</td>
-                                <td>{{ $t->price }}</td>
+                                <td>{{ number_format($t->price) }}</td>
                                 @if ($t->status == 1)
                                     <td> Active</td>
                                 @else
-                                    <td> Inactive</td>
+                                    <td> Không hoạt động</td>
                                 @endif
                                 <td>
                                     <div class="btn-group btn-group-sm">
                                         <a href="{{ route('topping.restore',$t->id) }}">
                                             <button type="submit" class="btn btn-info btn-sm" data-toggle="tooltip"
-                                                data-placement="top" title="Restore">
+                                                data-placement="top" title="Khôi phục">
                                                 <i class="mdi mdi mdi-backup-restore"></i>
                                             </button>
                                         </a>
@@ -45,12 +45,10 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div> {{ $lstTopping->links('pagination::bootstrap-4') }}</div>
             </div>
         </div>
     </div>
-    <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
-  <script src="../../assets/js/off-canvas.js"></script>
-  <script src="../../assets/js/hoverable-collapse.js"></script>
-  <script src="../../assets/js/misc.js"></script>
+
 
 @endsection

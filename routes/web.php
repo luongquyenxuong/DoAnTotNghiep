@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
@@ -30,6 +31,8 @@ Route::middleware(['auth'])->group(function(){
     Route::get('product/restore/{id}', [ProductController::class, 'restore'])->name('product.restore');
     Route::resource('product', ProductController::class);
 
+    Route::get('user/deleted', [UserController::class, 'deleted'])->name('user.deleted');
+    Route::get('user/restore/{id}', [UserController::class, 'restore'])->name('user.restore');
     Route::resource('user', UserController::class);
 
 
@@ -44,6 +47,10 @@ Route::middleware(['auth'])->group(function(){
     Route::get('topping/deleted', [ToppingController::class, 'deleted'])->name('topping.deleted');
     Route::get('topping/restore/{id}', [ToppingController::class, 'restore'])->name('topping.restore');
     Route::resource('topping', ToppingController::class);
+
+    Route::get('address/deleted', [AddressController::class, 'deleted'])->name('address.deleted');
+    Route::get('address/restore/{id}', [AddressController::class, 'restore'])->name('address.restore');
+    Route::resource('address', AddressController::class);
 });
 Route::get('login', [LoginController::class, 'showForm'])->name('login');
 Route::post('login', [LoginController::class, 'authenticate'])->name('login');

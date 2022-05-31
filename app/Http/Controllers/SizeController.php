@@ -111,7 +111,7 @@ class SizeController extends Controller
 
 
         $size->save();
-        return Redirect::route('size.index', ['size' => $size]);
+        return Redirect::route('size.index', ['size' => $size])->with('update', 'Cập nhật thành công');
     }
 
     /**
@@ -128,7 +128,7 @@ class SizeController extends Controller
         $size->save();
        // dd($product->status);
         $size->delete();
-        return Redirect::route('size.index');
+        return Redirect::route('size.index')->with('deleted', 'ok');
     }
     public function deleted()
     {

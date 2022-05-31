@@ -110,7 +110,7 @@ class ToppingController extends Controller
 
 
         $topping->save();
-        return Redirect::route('topping.index', ['topping' => $topping]);
+        return Redirect::route('topping.index', ['topping' => $topping])->with('update', 'Cập nhật thành công');
     }
 
     /**

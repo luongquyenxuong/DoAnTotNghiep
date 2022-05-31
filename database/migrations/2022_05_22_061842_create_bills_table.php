@@ -18,9 +18,9 @@ class CreateBillsTable extends Migration
             $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_discount');
             $table->unsignedBigInteger('id_address');
-            $table->decimal('total_amount', 10, 2);
-            $table->decimal('ship', 10, 2);
-            $table->decimal('total', 10, 2);
+            $table->double('total_amount');
+            $table->double('ship');
+            $table->double('total');
             $table->datetime('date');
             $table->boolean('status');
             $table->timestamps();

@@ -1,7 +1,7 @@
 /*------------------------------------------------------------------
  [Master Stylesheet]
 
-  Project:	Star Admin2 
+  Project:	Star Admin2
   Version:	1.2.1
 -------------------------------------------------------------------*/
 /*-------------------------------------------------------------------
@@ -10965,6 +10965,7 @@ textarea.form-control-lg {
 .form-check-input:focus {
   border-color: #86b7fe;
   outline: 0;
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
   box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
 }
 
@@ -10989,6 +10990,7 @@ textarea.form-control-lg {
 
 .form-check-input:disabled {
   pointer-events: none;
+  -webkit-filter: none;
   filter: none;
   opacity: 0.5;
 }
@@ -11012,6 +11014,7 @@ textarea.form-control-lg {
 
 @media (prefers-reduced-motion: reduce) {
   .form-switch .form-check-input {
+    -webkit-transition: none;
     transition: none;
   }
 }
@@ -11038,6 +11041,7 @@ textarea.form-control-lg {
 
 .btn-check[disabled] + .btn, .ajax-upload-dragdrop .btn-check[disabled] + .ajax-file-upload, .swal2-modal .swal2-buttonswrapper .btn-check[disabled] + .swal2-styled, .btn-check:disabled + .btn, .ajax-upload-dragdrop .btn-check:disabled + .ajax-file-upload, .swal2-modal .swal2-buttonswrapper .btn-check:disabled + .swal2-styled {
   pointer-events: none;
+  -webkit-filter: none;
   filter: none;
   opacity: 0.65;
 }
@@ -23238,11 +23242,14 @@ code {
 }
 
 .form-check .form-check-label input[type="checkbox"]:disabled + .input-helper:before {
-  border-color: #dee2e6;
+  /* border-color: #dee2e6; */
+  border-color: #0d6efd;
+
 }
 
 .form-check .form-check-label input[type="checkbox"]:disabled:checked + .input-helper:after {
-  background: #dee2e6;
+  /* background: #dee2e6; */
+  background: #0d6efd;
   color: #ffffff;
 }
 

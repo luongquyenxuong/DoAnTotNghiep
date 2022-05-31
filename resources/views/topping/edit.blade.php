@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('content')
-    <h1>Edit topping</h1>
+    <h1>Chỉnh sửa</h1>
     <div class="card">
         <div class="card-body">
 
@@ -8,28 +8,24 @@
                 @csrf
                 @method('PATCH')
                 <div class="form-group col-12">
-                    <label for="">Name topping:</label>
+                    <label for="">Tên topping:</label>
                     <input type="text" class="form-control" id="" placeholder="" name="name" value="{{ $topping->name }}">
 
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleInputEmail3">Price</label>
-                    <input  name="price" class="form-control" placeholder="Price"  value="{{ $topping->price }}">
+                    <label for="exampleInputEmail3">Giá</label>
+                    <input  name="price" class="form-control" placeholder="Giá"  value="{{ $topping->price }}">
                 </div>
 
 
                 <button type="submit" class="btn btn-primary btn-submit-input-form btn-them-phim">
-                    <strong>Submit</strong>
+                    <strong>Lưu</strong>
                 </button>
-                <a href="{{ route('topping.index') }}" class="btn btn-light">Cancel</a>
+                <a href="{{ route('topping.index') }}" class="btn btn-light">Hủy</a>
             </form>
         </div>
     </div>
-    <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
-    <script src="../../assets/js/off-canvas.js"></script>
-    <script src="../../assets/js/hoverable-collapse.js"></script>
-    <script src="../../assets/js/misc.js"></script>
-     
+
 
 @endsection

@@ -14,9 +14,6 @@
           <canvas id="performaneLine" style="display: block; width: 1003px; height: 150px;" width="1003" height="150" class="chartjs-render-monitor"></canvas>
         </div>
       </div>
-      <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
-  <script src="../../assets/js/off-canvas.js"></script>
-  <script src="../../assets/js/hoverable-collapse.js"></script>
-  <script src="../../assets/js/misc.js"></script>
+
 
 @endsection

@@ -118,7 +118,7 @@ class CategoryController extends Controller
             'status'=>true
         ]);
         $category->save();
-        return Redirect::route('category.index',['category'=>$category]);
+        return Redirect::route('category.index',['category'=>$category])->with('update', 'Cập nhật thành công');
     }
 
     public function deleted()
@@ -143,7 +143,7 @@ class CategoryController extends Controller
         ]);
         $category->save();
         $category->delete();
-        return Redirect::route('category.index');
+        return Redirect::route('category.index')->with('deleted', 'ok');
     }
     public function restore($id)
     {

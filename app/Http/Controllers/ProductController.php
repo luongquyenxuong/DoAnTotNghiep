@@ -131,7 +131,7 @@ class ProductController extends Controller
             $product->img_url = $request->file('img')->store('img/product/' . $product->id, 'public');
         }
         $product->save();
-        return Redirect::route('product.index', ['product' => $product]);
+        return Redirect::route('product.index', ['product' => $product])->with('update', 'Cập nhật thành công');
     }
 
     /**
@@ -148,7 +148,7 @@ class ProductController extends Controller
         $product->save();
        // dd($product->status);
         $product->delete();
-        return Redirect::route('product.index');
+        return Redirect::route('product.index')->with('deleted', 'ok');
     }
     public function deleted()
     {

@@ -2,7 +2,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Size</h4>
+            <h4 class="card-title">Kích thước</h4>
             <p class="card-description">
                 <a href="{{ route('size.index') }}" class="btn btn-sm btn-outline-primary ">
                     <i class="mdi mdi-arrow-left"></i>
@@ -12,29 +12,29 @@
                 <table class="table text-center">
                     <thead>
                         <tr>
-                            <th>id</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th>STT</th>
+                            <th>Kích thước</th>
+                            <th>Giá</th>
+                            <th>Trạng thái</th>
+                            <th>Chức năng</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($lstSize as $s)
                             <tr>
-                                <td>{{ $s->id }}</td>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ $s->name }}</td>
-                                <td>{{ $s->price }}</td>
+                                <td>{{ number_format($s->price) }}</td>
                                 @if ($s->status == 1)
                                     <td> Active</td>
                                 @else
-                                    <td> Inactive</td>
+                                    <td> Không hoạt động</td>
                                 @endif
                                 <td>
                                     <div class="btn-group btn-group-sm">
                                         <a href="{{ route('size.restore',$s->id) }}">
                                             <button type="submit" class="btn btn-info btn-sm" data-toggle="tooltip"
-                                                data-placement="top" title="Restore">
+                                                data-placement="top" title="Khôi phục">
                                                 <i class="mdi mdi mdi-backup-restore"></i>
                                             </button>
                                         </a>
@@ -45,12 +45,10 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div> {{ $lstSize->links('pagination::bootstrap-4') }}</div>
             </div>
         </div>
     </div>
-    <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
-  <script src="../../assets/js/off-canvas.js"></script>
-  <script src="../../assets/js/hoverable-collapse.js"></script>
-  <script src="../../assets/js/misc.js"></script>
+
 
 @endsection

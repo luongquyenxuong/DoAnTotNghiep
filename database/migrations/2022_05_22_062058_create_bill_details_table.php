@@ -22,7 +22,7 @@ class CreateBillDetailsTable extends Migration
             $table->integer('ice');
             $table->string('type');
             $table->integer('amount');
-            $table->decimal('price', 10, 2);
+            $table->double('price');
             $table->boolean('status');
             $table->timestamps();
             $table->softDeletes();

@@ -2,15 +2,15 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Người dùng</h4>
+            <h4 class="card-title">Địa chỉ</h4>
             <p class="card-description">
-                <a href="{{ route('user.create') }}" class="btn btn-outline-primary btn-fw">
+                <a href="{{ route('address.create') }}" class="btn btn-outline-primary btn-fw">
                     <i class=""></i>
                     Thêm
                 </a>
-                <a href="{{ route('user.deleted') }}" class="btn btn-outline-primary btn-fw">
+                <a href="{{ route('address.deleted') }}" class="btn btn-outline-primary btn-fw">
                     <i class=""></i>
-                    Người dùng đã xóa
+                    Địa chỉ đã xóa
                 </a>
             </p>
             <div class="table-responsive">
@@ -19,34 +19,37 @@
                         <tr>
                             <th>STT</th>
                             <th>Tên</th>
-                            <th>Email</th>
                             <th>Số điện thoại</th>
-                            <th>Admin</th>
-                            <th>Trạng thái</th>
+                            <th>Đường</th>
+                            <th>Phường</th>
+                            <th>Quận</th>
+                            <th>Thành phố</th>
+                            <th>Mặc định</th>
                             <th>Chức năng</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($lstUser as $u)
+                        @foreach ($lstAddress as $a)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $u->full_name }}</td>
-                                <td>{{ $u->email }}</td>
-                                <td>{{ $u->phone }}</td>
-                                @if ($u->is_admin == 1)
+                                <td>{{ $a->user->full_name }}</td>
+                                <td>{{ $a->phone }}</td>
+                                <td>{{ $a->street }}</td>
+                                <td>{{ $a->ward }}</td>
+                                <td>{{ $a->district }}</td>
+                                <td>{{ $a->city }}</td>
+                                @if ($a->is_default == 1)
                                     <td class="checkbox-center">
-
-
                                         <i class="mdi mdi-checkbox-marked menu-icon"></i>
                                     </td>
                                 @else
                                     <td> <i class="mdi mdi-checkbox-blank-outline menu-icon"></i></td>
                                 @endif
-                                @if ($u->status == 1)
+                                {{-- @if ($a->status == 1)
                                     <td> Hoạt động</td>
                                 @else
-                                    <td>  Hoạt động</td>
-                                @endif
+                                    <td> Inactive</td>
+                                @endif --}}
                                 <td>
                                     <div class="btn-group btn-group-sm">
                                         {{-- <a>
@@ -106,19 +109,19 @@
                                                 </div>
                                             </div>
                                         </div> --}}
-                                        <a href="{{ route('user.show', $u) }}">
+                                        <a href="{{ route('address.show', $a) }}">
                                             <button type="submit" class="btn btn-info btn-sm" data-toggle="tooltip"
                                                 data-placement="top" title="Xem">
                                                 <i class="mdi mdi-eye"></i>
                                             </button>
                                         </a>
-                                        <a href="{{ route('user.edit', $u) }}">
+                                        <a href="{{ route('address.edit', $a) }}">
                                             <button type="submit" class="btn btn-warning btn-sm" data-toggle="tooltip"
                                                 data-placement="top" title="Chỉnh sửa">
                                                 <i class="mdi mdi-pencil-box"></i>
                                             </button>
                                         </a>
-                                        <form action="{{ route('user.destroy', $u) }}" method="post"
+                                        <form action="{{ route('address.destroy', $a) }}" method="post"
                                             class="delete">
                                             @csrf
                                             @method('DELETE')
@@ -133,9 +136,8 @@
                         @endforeach
                     </tbody>
                 </table>
-                <div> {{ $lstUser->links('pagination::bootstrap-4') }}</div>
+                <div> {{ $lstAddress->links('pagination::bootstrap-4') }}</div>
             </div>
         </div>
     </div>
-
 @endsection

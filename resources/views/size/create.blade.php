@@ -1,29 +1,38 @@
 @extends('layout.app')
 @section('content')
-    <h1>Add size</h1>
+    <h1>Thêm</h1>
     <div class="card">
         <div class="card-body">
-            <form class="forms-sample" method="post" action="{{ route('size.store') }}" enctype="multipart/form-data">
+            <form class="forms-sample" name="myForm" onsubmit="return validateForm()" method="post" action="{{ route('size.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                    <label for="">Name size</label>
-                    <input type="text" class="form-control" name="name" placeholder="Name size">
+                    <label for="">Kích thước</label>
+                    <input type="text" class="form-control" name="name" placeholder="Kích thước">
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleInputEmail3">Price</label>
-                    <input  type="number" name="price" class="form-control" placeholder="Price">
+                    <label for="exampleInputEmail3">Giá</label>
+                    <input type="number" name="price" class="form-control" placeholder="Giá">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary me-2">Thêm</button>
+                    <a href="{{ route('size.index') }}" class="btn btn-light">Hủy</a>
                 </div>
 
-                <button type="submit" class="btn btn-primary me-2">Submit</button>
-                <a href="{{ route('size.index') }}" class="btn btn-light">Cancel</a>
             </form>
         </div>
     </div>
+    <script>
+        function validateForm() {
+            let name = document.forms["myForm"]["name"].value;
 
-    <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
-    <script src="../../assets/js/off-canvas.js"></script>
-    <script src="../../assets/js/hoverable-collapse.js"></script>
-    <script src="../../assets/js/misc.js"></script>
+            let price = document.forms["myForm"]["price"].value;
 
+            if (name == "" || price == "") {
+                alert("Cần nhập thông tin đầy đủ");
+                return false;
+            }
+        }
+    </script>
+   
 @endsection

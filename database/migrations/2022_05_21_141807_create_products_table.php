@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('id_category');
             $table->string('img_url');
             $table->string('name');
-            $table->decimal('price',10,2);
+            $table->double('price');
             $table->boolean('status');
             $table->timestamps();
             $table->softDeletes();

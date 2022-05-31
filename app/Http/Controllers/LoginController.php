@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class LoginController extends Controller
 {
@@ -20,7 +21,7 @@ class LoginController extends Controller
         //     'email' => ['required', 'email'],
         //     'password' => ['required'],
         // ]);
-        $account = User::where('email', $request->input('email'))->where('password', $request->input('password'))->where('is_admin',true)->first();
+        $account = User::where('email', $request->input('email'))->where('password', $request->input('password'))->where('is_admin', true)->orWhere('is_admin', 2)->first();
 
         if (!empty($account)) {
             Auth::login($account);
@@ -30,6 +31,14 @@ class LoginController extends Controller
         return back()->withErrors([
             'email' => 'Sai thông tin tài khoản.',
         ]);
+    }
+    protected function fixImage(User $user)
+    {
+        if (Storage::disk('public')->exists($user->avatar)) {
+            $user->avatar = Storage::url($user->avatar);
+        } else {
+            $user->avatar = asset('assets/images/user.png') ;
+        }
     }
     public function logout(Request $request)
     {

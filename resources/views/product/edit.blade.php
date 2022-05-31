@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('content')
-    <h1>Edit product</h1>
+    <h1>Chỉnh sửa</h1>
     <div class="card">
         <div class="card-body">
 
@@ -8,14 +8,14 @@
                 enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
-                <div class="form-group col-12">
-                    <label for="">Name product:</label>
+                <div class="form-group ">
+                    <label for="">Tên sản phẩm:</label>
                     <input type="text" class="form-control" id="" placeholder="" name="name"
                         value="{{ $product->name }}">
 
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlSelect1">Category</label>
+                    <label for="exampleFormControlSelect1">Danh mục</label>
                     <select name="idCategory" class="form-control form-control-lg">
                         {{-- <option value=''>Select</option> --}}
                         @foreach ($lstCategory as $category)
@@ -24,34 +24,26 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail3">Price</label>
-                    <input  name="price" class="form-control" placeholder="Price"  value="{{ $product->price }}">
-                </div>
-                <img style="width: 100px;max-height:100px;object-fit:contain"
-                    src="{{ $product->img_url }}">
-                <div class="form-group  col-12">
-                    <label for="inputImage">File upload</label>
-                    <input type="file" id="inputImage" name="img" class="file-upload-default">
-                    <div class="input-group col-xs-12">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                        <span class="input-group-append">
-                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
-                        </span>
-                    </div>
+                    <label for="">Giá</label>
+                    <input type="number" name="price" class="form-control" placeholder="" value="{{ $product->price }}">
                 </div>
 
+                <div class=" custom-file mb-3">
+                    <input type="file" class="custom-file-input" onchange="readURL(this);" id="customFile" name="img">
+                    <label class="custom-file-label" for="customFile">Chọn hình ảnh</label>
+                </div>
 
-                <button type="submit" class="btn btn-primary btn-submit-input-form btn-them-phim">
-                    <strong>Submit</strong>
-                </button>
-                <a href="{{ route('product.index') }}" class="btn btn-light">Cancel</a>
+                <div class="form-group"> <img style="width: 100px;max-height:100px;object-fit:contain" id="hinhanh"
+                        src="{{ $product->img_url }}"></div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-submit-input-form btn-them-phim">
+                        <strong>Lưu</strong>
+                    </button>
+                    <a href="{{ route('product.index') }}" class="btn btn-light">Hủy</a>
+                </div>
+
             </form>
         </div>
     </div>
-    <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
-    <script src="../../assets/js/off-canvas.js"></script>
-    <script src="../../assets/js/hoverable-collapse.js"></script>
-    <script src="../../assets/js/misc.js"></script>
-
 
 @endsection

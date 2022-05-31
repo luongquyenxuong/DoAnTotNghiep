@@ -18,7 +18,7 @@ class CreateBillDetailToppingsTable extends Migration
             $table->unsignedBigInteger('id_topping');
             $table->unsignedBigInteger('id_bill_detail');
             //$table->interger('amount');
-            $table->decimal('price',10,2);
+            $table->double('price');
             $table->boolean('status');
             $table->timestamps();
             $table->softDeletes();

@@ -17,7 +17,7 @@ class CreateSizesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_user');
             $table->string('name');
-            $table->decimal('price',10,2);
+            $table->double('price');
             $table->boolean('status');
             $table->timestamps();
             $table->softDeletes();

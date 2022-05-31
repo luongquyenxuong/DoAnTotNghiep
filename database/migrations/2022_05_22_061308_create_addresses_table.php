@@ -20,7 +20,8 @@ class CreateAddressesTable extends Migration
             $table->string('street');
             $table->string('ward');
             $table->string('district');
-            $table->boolean('city');
+            $table->string('city');
+            $table->boolean('is_default');
             $table->timestamps();
             $table->softDeletes();
         });
