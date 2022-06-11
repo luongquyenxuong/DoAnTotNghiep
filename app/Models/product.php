@@ -16,4 +16,8 @@ class product extends Model
     {
         return $this->belongsTo(category::class,'id_category');
     }
+    public function bill_detail()
+    {
+        return $this->hasMany(bill_detail::class,'id_product');
+    }
 }

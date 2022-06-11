@@ -1,13 +1,15 @@
 <?php
 
-use App\Http\Controllers\AddressController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ADMIN\AddressController;
+use App\Http\Controllers\ADMIN\BillController;
+use App\Http\Controllers\ADMIN\CategoryController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\SizeController;
-use App\Http\Controllers\ToppingController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\ADMIN\LoginController;
+use App\Http\Controllers\ADMIN\ProductController;
+use App\Http\Controllers\ADMIN\HomeController;
+use App\Http\Controllers\ADMIN\SizeController;
+use App\Http\Controllers\ADMIN\ToppingController;
+use App\Http\Controllers\ADMIN\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,37 +24,48 @@ use App\Http\Controllers\UserController;
 
 
 
-Route::middleware(['auth'])->group(function(){
-    Route::get('/', function () {
-        return view('index');
-    });
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/home', [HomeController::class, 'index']);
+    // Route::get('/admin/home', function () {
+    //     return view('Admin.index');
+    // });
+    Route::get('admin/product/deleted', [ProductController::class, 'deleted'])->name('admin.product.deleted');
+    Route::get('admin/product/restore/{id}', [ProductController::class, 'restore'])->name('admin.product.restore');
+    Route::resource('admin/product', ProductController::class);
 
-    Route::get('product/deleted', [ProductController::class, 'deleted'])->name('product.deleted');
-    Route::get('product/restore/{id}', [ProductController::class, 'restore'])->name('product.restore');
-    Route::resource('product', ProductController::class);
-
-    Route::get('user/deleted', [UserController::class, 'deleted'])->name('user.deleted');
-    Route::get('user/restore/{id}', [UserController::class, 'restore'])->name('user.restore');
-    Route::resource('user', UserController::class);
+    Route::get('admin/user/deleted', [UserController::class, 'deleted'])->name('admin.user.deleted');
+    Route::get('admin/user/restore/{id}', [UserController::class, 'restore'])->name('admin.user.restore');
+    Route::resource('admin/user', UserController::class);
 
 
-    Route::get('category/deleted', [CategoryController::class, 'deleted'])->name('category.deleted');
-    Route::get('category/restore/{id}', [CategoryController::class, 'restore'])->name('category.restore');
-    Route::resource('category', CategoryController::class);
+    Route::get('admin/category/deleted', [CategoryController::class, 'deleted'])->name('admin.category.deleted');
+    Route::get('admin/search', [CategoryController::class, 'search']);
+    Route::get('admin/category/restore/{id}', [CategoryController::class, 'restore'])->name('admin.category.restore');
+    Route::resource('admin/category', CategoryController::class);
 
-    Route::get('size/deleted', [SizeController::class, 'deleted'])->name('size.deleted');
-    Route::get('size/restore/{id}', [SizeController::class, 'restore'])->name('size.restore');
-    Route::resource('size', SizeController::class);
+    Route::get('admin/size/deleted', [SizeController::class, 'deleted'])->name('admin.size.deleted');
+    Route::get('admin/size/restore/{id}', [SizeController::class, 'restore'])->name('admin.size.restore');
+    Route::resource('admin/size', SizeController::class);
 
-    Route::get('topping/deleted', [ToppingController::class, 'deleted'])->name('topping.deleted');
-    Route::get('topping/restore/{id}', [ToppingController::class, 'restore'])->name('topping.restore');
-    Route::resource('topping', ToppingController::class);
+    Route::get('admin/topping/deleted', [ToppingController::class, 'deleted'])->name('admin.topping.deleted');
+    Route::get('admin/topping/restore/{id}', [ToppingController::class, 'restore'])->name('admin.topping.restore');
+    Route::resource('admin/topping', ToppingController::class);
 
-    Route::get('address/deleted', [AddressController::class, 'deleted'])->name('address.deleted');
-    Route::get('address/restore/{id}', [AddressController::class, 'restore'])->name('address.restore');
-    Route::resource('address', AddressController::class);
+    Route::get('admin/address/deleted', [AddressController::class, 'deleted'])->name('admin.address.deleted');
+    Route::get('admin/address/restore/{id}', [AddressController::class, 'restore'])->name('admin.address.restore');
+    Route::resource('admin/address', AddressController::class);
+
+    Route::get('admin/bill/cancel', [BillController::class, 'cancel'])->name('admin.bill.cancel');
+    Route::get('admin/bill/finished/{id}', [BillController::class, 'finished'])->name('admin.bill.finished');
+    Route::get('admin/bill/complete', [BillController::class, 'complete'])->name('admin.bill.complete');
+    Route::get('admin/bill/delivering', [BillController::class, 'delivering'])->name('admin.bill.delivering');
+    Route::get('admin/bill/confirm/{id}', [BillController::class, 'confirm'])->name('admin.bill.confirm');
+    Route::get('admin/bill/confirming', [BillController::class, 'confirming'])->name('admin.bill.confirming');
+    Route::get('admin/bill/filter/{id}', [BillController::class, 'filter'])->where('id','[0-9]+');
+     Route::resource('admin/bill', BillController::class);
+
 });
-Route::get('login', [LoginController::class, 'showForm'])->name('login');
-Route::post('login', [LoginController::class, 'authenticate'])->name('login');
-Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('admin/login', [LoginController::class, 'showForm'])->name('login');
+Route::post('admin/login', [LoginController::class, 'authenticate'])->name('login');
+Route::get('admin/logout', [LoginController::class, 'logout'])->name('logout');
 //Route::get('/', [HomeController::class, 'index']);

@@ -15,4 +15,8 @@ class address extends Model
     {
         return $this->belongsTo(User::class,'id_user');
     }
+    public function bill()
+    {
+        return $this->hasMany(bill::class,'id_address');
+    }
 }

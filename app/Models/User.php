@@ -17,6 +17,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(address::class,'id_user');
     }
+    public function bill()
+    {
+        return $this->hasMany(bill::class,'id_user');
+    }
     /**
      * The attributes that are mass assignable.
      *
